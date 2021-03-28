@@ -47,9 +47,9 @@ def callback():
 def handle_message(event):
     if event.message.text == "今日はなんの日？":
         result = adalo.callAPI()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text)
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
 if __name__ == "__main__":
 #    app.run()
