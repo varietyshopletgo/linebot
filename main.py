@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 import os
 import adalo
+import countdown
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -47,6 +48,9 @@ def callback():
 def handle_message(event):
     if event.message.text == "今日はなんの日？":
         result = adalo.callAPI()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    elif event.message.text == "令和市が終わるまであと何日？":
+        result = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
