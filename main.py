@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import os
+import adalo
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -17,6 +18,7 @@ app = Flask(__name__)
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
+#新しいLinebotApi instanceをつくる
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
@@ -43,9 +45,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=event.message.text))
+    if event.message.text == "今日はなんの日？":
+        result = adalo.callAPI()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result)
+    else:
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text)
 
 if __name__ == "__main__":
 #    app.run()
