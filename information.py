@@ -154,6 +154,4 @@ def information():
         }
       }
     }
-
-    message = FlexSendMessage.new_from_json_dict(payload)
-    return message
+    return payload
