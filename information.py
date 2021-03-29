@@ -1,48 +1,159 @@
-import json
-import os
-import requests
-from linebot.models import (
-   CarouselColumn, CarouselTemplate, FollowEvent,
-   LocationMessage, MessageEvent, TemplateSendMessage,
-   TextMessage, TextSendMessage, UnfollowEvent, URITemplateAction
-)
+def information():
+    payload = {
+      "type": "flex",
+      "altText": "Flex Message",
+      "contents": {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+          "size": "full",
+          "aspectRatio": "20:13",
+          "aspectMode": "cover",
+          "action": {
+            "type": "uri",
+            "label": "Line",
+            "uri": "https://linecorp.com/"
+          }
+        },
+        "body": {
+          "type": "box",
+          "layout": "vertical",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Brown Cafe",
+              "size": "xl",
+              "weight": "bold"
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "margin": "md",
+              "contents": [
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                  "size": "sm"
+                },
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                  "size": "sm"
+                },
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                  "size": "sm"
+                },
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                  "size": "sm"
+                },
+                {
+                  "type": "icon",
+                  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                  "size": "sm"
+                },
+                {
+                  "type": "text",
+                  "text": "4.0",
+                  "flex": 0,
+                  "margin": "md",
+                  "size": "sm",
+                  "color": "#999999"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "margin": "lg",
+              "contents": [
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "Place",
+                      "flex": 1,
+                      "size": "sm",
+                      "color": "#AAAAAA"
+                    },
+                    {
+                      "type": "text",
+                      "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                      "flex": 5,
+                      "size": "sm",
+                      "color": "#666666",
+                      "wrap": True
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": "Time",
+                      "flex": 1,
+                      "size": "sm",
+                      "color": "#AAAAAA"
+                    },
+                    {
+                      "type": "text",
+                      "text": "10:00 - 23:00",
+                      "flex": 5,
+                      "size": "sm",
+                      "color": "#666666",
+                      "wrap": True
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "flex": 0,
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "action": {
+                "type": "uri",
+                "label": "CALL",
+                "uri": "https://linecorp.com"
+              },
+              "height": "sm",
+              "style": "link"
+            },
+            {
+              "type": "button",
+              "action": {
+                "type": "uri",
+                "label": "WEBSITE",
+                "uri": "https://linecorp.com"
+              },
+              "height": "sm",
+              "style": "link"
+            },
+            {
+              "type": "spacer",
+              "size": "sm"
+            }
+          ]
+        }
+      }
+    }
 
-# APIに接続するための情報
-API_Endpoint = "https://api.adalo.com/v0/apps/7e89d6b4-efb5-435c-8ea3-3822f4a7c5c0/collections/t_afgpkmk2t6gcfqqbu80c7xm3a?offset=0&limit=100"
-API_Key = os.environ["API_Key"]
-
-# APIに送信する情報
-headers = {'Content-Type': 'application/json', 'Authorization':API_Key}
-
-# API接続の実行
-result = requests.get(API_Endpoint, headers=headers).json()
-
-
-
-#頭の'record'が邪魔
-jsn = result['records']
-
-Names = [i['Name'] for i in jsn]
-urls = [i['url'] for i in jsn]
-images = [i['image'] for i in jsn]
-discriptions = [i['discription'] for i in jsn]
-
-def handle_message():
-	#カルーセルに渡す形に変換
-  carousel_columns = [
-        CarouselColumn(
-            thumbnail_image_url=image,
-            title=Name,
-            text=discription,
-            actions=[
-                URITemplateAction(
-                    label='遊びに行く',
-                    uri=url,
-                )
-            ]
-        ) for Name, url, image, discription in (
-            zip(Names, urls, images, discriptions)
-        )
-    ]
-  messages = TemplateSendMessage(alt_text="carousel template", template=CarouselTemplate(columns=carousel_columns))
-  return messages
+    message = FlexSendMessage.new_from_json_dict(payload)
+    return message
