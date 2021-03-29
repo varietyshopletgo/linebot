@@ -2,6 +2,7 @@ from flask import Flask, request, abort
 import os
 import adalo
 import countdown
+import information
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -52,6 +53,9 @@ def handle_message(event):
     elif event.message.text == "令和市が終わるまであと何日？":
         result = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    elif event.message.text == "施設一覧が見たい":
+        result = information.handle_message()
+        line_bot_api.reply_message(event.reply_token,messages=messages)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
