@@ -55,7 +55,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     elif event.message.text == "施設一覧が見たい":
         result = information.handle_message()
-        line_bot_api.reply_message(event.reply_token,messages=messages)
+        line_bot_api.reply_message(event.reply_token,messages=result)
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
