@@ -65,14 +65,14 @@ class Additional_question:
         return button_template
     def answer_d(self):
         msg = "診断結果はｄです"
-        return TemplateSendMessage(text=msg)
+        return TextSendMessage(text=msg)
     def answer_e(self):
         msg = "診断結果はEです"
-        return TemplateSendMessage(text=msg)
+        return TextSendMessage(text=msg)
     def answer_f(self):
         msg = "診断結果はFです"
-        return TemplateSendMessage(text=msg)
+        return TextSendMessage(text=msg)
 
     def answer_g(self):
         msg = "診断結果はGです"
-        return TemplateSendMessage(text=msg)
+        return TextSendMessage(text=msg)
