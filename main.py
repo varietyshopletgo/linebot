@@ -3,6 +3,7 @@ import os
 import adalo
 import countdown
 import information
+import quick_reply
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -11,7 +12,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,FlexSendMessage
+    MessageEvent, TextMessage, TextSendMessage,FlexSendMessage,MessageAction, QuickReply
 )
 
 app = Flask(__name__)
@@ -56,6 +57,9 @@ def handle_message(event):
     elif event.message.text == "施設一覧が見たい":
         result = information.information()
         line_bot_api.reply_message(event.reply_token,FlexSendMessage.new_from_json_dict(result))
+    elif event.message.text == "サボテン話そう":
+        result = quick_reply.response_message()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=items)))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
