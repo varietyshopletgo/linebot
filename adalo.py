@@ -16,7 +16,7 @@ def callAPI():
     jsn = result['records']
     title = getValue(today, 'Name', jsn) #記念日の名前
     text_discription = getValue(today, 'discription', jsn) #記念日の説明
-    message = '今日は' + title + 'です。'
+    message = '今日は' + title + 'だよ'
     return message
 # とってきた情報(JSON)から必要な値を取り出す関数
 # [{key:tokyo, value:apple}{key:chiba, value:banana}]こういう形のJSONだった。親キーがないパターン。
