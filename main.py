@@ -4,6 +4,7 @@ import adalo
 import countdown
 import information
 import quick_reply
+from template import button_event
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -46,6 +47,7 @@ def callback():
 
     return 'OK'
 
+# メッセージが返ってきたときの反応
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == "今日はなんの日？":
@@ -60,19 +62,28 @@ def handle_message(event):
     elif event.message.text == "サボテン話そう":
         result = quick_reply.response_message()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))
-    elif event.message.text == "Rubyが好き":
-        result = {
-   "type":"datetimepicker",
-   "label":"Select date",
-   "data":"storeId=12345",
-   "mode":"datetime",
-   "initial":"2017-12-25t00:00",
-   "max":"2018-01-24t23:59",
-   "min":"2017-12-25t00:00"
-}
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    elif event.message.text == "執事診断":
+        result = quick_reply.response_message()
+        line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
+
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+
+#値が返って来たときの反応
+@handler.add(PostbackEvent)
+def on_postback(event):
+    reply_token = event.reply_token
+    user_id = event.source.user_id
+
+    #postback_msg : method名を文字列で
+    postback_msg = event.postback.data
+
+    #additional_question : classオブジェクト
+    additional_question = button_event.Additional_question()
+
+    #クラスオブジェクトと文字列で取得したメソッド名から、メソッドオブジェクトを作成
+    question = getattr(additional_question, postback_msg)
+    line_bot_api.reply_message(event.reply_token, question())
 
 if __name__ == "__main__":
 #    app.run()
