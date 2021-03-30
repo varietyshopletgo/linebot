@@ -60,8 +60,8 @@ def handle_message(event):
     elif event.message.text == "サボテン話そう":
         result = quick_reply.response_message()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))
-        if event.message.text == "Rubyが好き":
-            result = {
+    elif event.message.text == "Rubyが好き":
+        result = {
    "type":"datetimepicker",
    "label":"Select date",
    "data":"storeId=12345",
@@ -70,7 +70,7 @@ def handle_message(event):
    "max":"2018-01-24t23:59",
    "min":"2017-12-25t00:00"
 }
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
