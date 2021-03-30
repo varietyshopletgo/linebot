@@ -67,6 +67,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
     elif event.message.text == "カルーセル":
         line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_a())
+    elif event.message.text == "イメージカルーセル":
+        line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_b())
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
