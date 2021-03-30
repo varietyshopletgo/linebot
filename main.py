@@ -70,7 +70,10 @@ def handle_message(event):
     elif event.message.text == "カルーセル":
         line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_a())
     elif event.message.text == "イメージカルーセル":
-        line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_b())
+        result = response_message() 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="hello",quick_reply=QuickReply(result)))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
@@ -89,6 +92,18 @@ def on_postback(event):
     #クラスオブジェクトと文字列で取得したメソッド名から、メソッドオブジェクトを作成
     question = getattr(additional_question, postback_msg)
     line_bot_api.reply_message(event.reply_token, question())
+    
+def response_message():
+  places = ['令和市公民館', '令和市民大学', '令和市みらいの文化センター', 'ふぃろと愉快な仲間たち', '令和市note直通特急', '思考の渦', '令和市公民館 第一和室', 'ゆかりの部屋', '令和他力本願寺', '令和市新聞部', '蟹家飯店', '令和市郵便局', '令和市立病院', '【DDD】', 'しさく公園', '令和市デジタル庁澪標研究棟']
+  
+  urls = ['https://line.me/ti/g2/bD5Cb3St7EGB2ljISU7hQA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/27Ul0_tr-YyDMHIgzCS7Ow?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/7DHG49ErBIh5npZ_gZd5jw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/XvISahCX8Yt0b6TPTC1DPA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/1fG-xDlclF4CXt-8k3n_jQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://discord.gg/A6NbcNnFY6', 'https://chatcast.jp/channel/reiwacity', 'https://line.me/ti/g2/x3tNKIam9FfbcR7LgR980Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/tl4x1jhp7wuJovem38W8yw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/F3fmT0u1BwXJegjAH3nnqA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/ug0rKcEWvPtiOVj2u-P3hw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/Jl9udQeJtpSZaNs5OGsONg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/aPdxTIf03gvb9_g-gqMpXQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/BXMu9SDB6ow8DIACeLsnzQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/W4k67QKcAi36NfciiTsDpg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/6ZT9AW-wGagQ8cfiMkm3DQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default']
+
+  items = [ QuickReplyButton(
+        action=URIAction(
+            label=f"{place}", uri=f"{url}"
+            )
+        ) for place, url in zip(places, urls)]
+  return items 
 
 if __name__ == "__main__":
 #    app.run()
