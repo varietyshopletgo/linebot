@@ -16,7 +16,7 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,FlexSendMessage,MessageAction,
     QuickReply, PostbackEvent,CarouselTemplate, ImageCarouselTemplate,
-    CarouselColumn, ImageCarouselColumn
+    CarouselColumn, ImageCarouselColumn,QuickReplyButton
 )
 
 app = Flask(__name__)
