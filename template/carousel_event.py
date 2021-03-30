@@ -1,6 +1,7 @@
 from linebot.models import (
     PostbackEvent, TextSendMessage, TemplateSendMessage,
-    CarouselTemplate, ImageCarouselTemplate, PostbackTemplateAction
+    CarouselTemplate, ImageCarouselTemplate, PostbackTemplateAction,
+    CarouselColumn, ImageCarouselColumn
 )
 
 class carousel_action:
