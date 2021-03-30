@@ -69,11 +69,11 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
     elif event.message.text == "カルーセル":
         line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_a())
-    elif event.message.text == "イメージカルーセル":
+    elif event.message.text == "施設一覧を見たいな":
         result = response_message() 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="hello",quick_reply=QuickReply(result)))
+            TextSendMessage(text="OK！今日はどこに行く？",quick_reply=QuickReply(result)))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
