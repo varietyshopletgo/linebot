@@ -59,7 +59,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,FlexSendMessage.new_from_json_dict(result))
     elif event.message.text == "サボテン話そう":
         result = quick_reply.response_message()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=items)))
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
