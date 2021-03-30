@@ -5,6 +5,7 @@ import countdown
 import information
 import quick_reply
 from template import button_event
+from template import carousel_event
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -63,9 +64,9 @@ def handle_message(event):
         result = quick_reply.response_message()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))
     elif event.message.text == "執事診断":
-        result = quick_reply.response_message()
         line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
-
+    elif event.message.text == "カルーセル":
+        line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_a())
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
