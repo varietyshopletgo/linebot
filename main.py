@@ -4,6 +4,7 @@ import adalo
 import countdown
 import information
 import quick_reply
+import random
 from template import button_event
 from template import carousel_event
 
@@ -53,10 +54,13 @@ def callback():
 # メッセージが返ってきたときの反応
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text == "今日はなんの日？":
+    if event.message.text == "今日はなんの日だっけ？":
         result = adalo.callAPI()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-    elif event.message.text == "令和市が終わるまであと何日？":
+    elif event.message.text == "おーいサボテン。起きてる？":
+        result = saboten()
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+    elif event.message.text == "そういえば令和市が終わるまであと何日？":
         result = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     elif event.message.text == "施設一覧が見たい":
@@ -69,7 +73,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
     elif event.message.text == "カルーセル":
         line_bot_api.reply_message(event.reply_token,carousel_event.carousel_action().carousel_a())
-    elif event.message.text == "「さてと、でかけるか」":
+    elif event.message.text == "そろそろ出かけようかな":
         result = response_message() 
         line_bot_api.reply_message(
             event.reply_token,
@@ -103,7 +107,12 @@ def response_message():
             label=f"{place}", uri=f"{url}"
             )
         ) for place, url in zip(places, urls)]
-  return items 
+  return items
+
+def saboten():
+    words = ["起きてたよ。\nなんか言った？", "hello\nhello"]
+    sleepy_word = random.choice(words)
+    return sleepy_word
 
 if __name__ == "__main__":
 #    app.run()
