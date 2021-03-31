@@ -8,7 +8,6 @@ from linebot.models import (
     
 )
 
-
 def getTimetree():
     # トークンの設定
     ACCESS_TOKEN = os.environ["TT_ACCESS_TOKEN"]
@@ -49,7 +48,6 @@ def tt_return_msg():
     buttons_template_message = TemplateSendMessage(
     alt_text='予定表見に行く？',
     template=ButtonsTemplate(
-        text='気になる催し物あった？君もなにかするとき掲示したらいいよ。予想外の誰かが来たら面白そうじゃない？',
         actions=[
             URIAction(
                 label='掲示スペースに立ち寄る',
@@ -59,3 +57,4 @@ def tt_return_msg():
     )
     )
     return buttons_template_message
+

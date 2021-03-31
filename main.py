@@ -55,6 +55,7 @@ def callback():
 # メッセージが返ってきたときの反応
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    
     if event.message.text == "今日はなんの日だっけ？":
         result = adalo.callAPI()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
@@ -62,8 +63,11 @@ def handle_message(event):
         result = saboten()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     elif event.message.text == "そういえば令和市が終わるまであと何日？":
-        result = countdown.countdown()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+        yourname = username_search(event)
+        result1 = countdown.countdown()
+        str_day = countdown.countdown2()
+        result2 = countdown.cd_sendmsg(str_day,yourname)
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
     elif event.message.text == "近々なにかある？":
         result = timetree.getTimetree()
         line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=result),timetree.tt_return_msg()])
@@ -170,6 +174,11 @@ def all_sns():
         )
     )
     return carousel_template_message
+
+def username_search(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
+    yourname = profile.display_name
+    return yourname
 
 if __name__ == "__main__":
 #    app.run()
