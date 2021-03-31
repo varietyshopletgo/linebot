@@ -40,15 +40,15 @@ def cd_imagemaker(): #str_day, yourname
     base_img = Image.open(ogp_base_img_path).copy()
     base_img = add_centered_text(base_img, msg1, font_bold_path, 48, (48, 48, 48), 280)
     base_img = add_centered_text(base_img, msg2, font_medium_path, 22, (120, 120, 120), 580)
-
-    return base_img
+    base_img.save('cdimage.png')
+    #return base_img
     #base_img.show()
-    #base_img.save(cdimage.png)
+    
 
 def cd_sendmsg(): #strday, yourname 
-    img_urls = cd_imagemaker
+    #img_urls = cd_imagemaker
     image_message = ImageSendMessage(
-        original_content_url=img_urls,
-        preview_image_url= img_urls
+        original_content_url="cdimage.png",
+        preview_image_url= "cdimage.png"
     )
     return image_message
