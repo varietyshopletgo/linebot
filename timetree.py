@@ -51,7 +51,7 @@ def tt_return_msg():
     template=ButtonsTemplate(
         thumbnail_image_url='https://example.com/image.jpg',
         title='「予定表見に行く？」',
-        text='気になる催し物あった？掲示スペース見に行こうよ。TimeTreeを使ってるよ。\nきみがなにかするときも掲示したらいいよ。予想外の誰かが遊びに来たら面白そうじゃない？',
+        text='気になる催し物あった？君もなにかするとき掲示したらいいよ。予想外の誰かが来たら面白そうじゃない？',
         actions=[
             URIAction(
                 label='掲示スペースに立ち寄る',
