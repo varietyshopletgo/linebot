@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timezone, timedelta
 import dateutil.parser
 from linebot.models import (
-    TemplateSendMessage, ButtonsTemplate, URIAction  
+    TemplateSendMessage, ButtonsTemplate, URIAction, TextSendMessage  
 )
 
 def get_timetree():
