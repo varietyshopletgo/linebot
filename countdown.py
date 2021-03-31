@@ -45,7 +45,7 @@ def cd_imagemaker(): #str_day, yourname
     #base_img.show()
     #base_img.save(cdimage.png)
 
-def cd_sendmsg(): #strday, yourname
+def cd_sendmsg(strday, yourname): 
     img_urls = cd_imagemaker
     image_message = ImageSendMessage(
         original_content_url=img_urls,
