@@ -65,9 +65,9 @@ def handle_message(event):
     elif event.message.text == "そういえば令和市が終わるまであと何日？":
         yourname = username_search(event)
         result1 = countdown.countdown()
-        str_day = countdown.countdown2()
-        result2 = countdown.cd_sendmsg() #(str_day,yourname)
-        line_bot_api.reply_message(event.reply_token,[result1, result2])
+        #str_day = countdown.countdown2()
+        #result2 = countdown.cd_sendmsg() #(str_day,yourname)
+        line_bot_api.reply_message(event.reply_token,result1)
     elif event.message.text == "近々なにかある？":
         result1 = timetree.get_timetree()
         result2 = timetree.get_msg()
