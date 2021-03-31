@@ -3,6 +3,11 @@ import os
 import json
 from datetime import datetime, timezone, timedelta
 import dateutil.parser
+from linebot.models import (
+    TemplateSendMessage, ButtonsTemplate, URIAction
+    
+)
+
 
 def getTimetree():
     # トークンの設定
@@ -39,3 +44,20 @@ def getTimetree():
         tt_longmsg = 'こんなの見つけたよ\n\n' + tt_msg
     
     return tt_longmsg
+
+def tt_return_msg():
+    buttons_template_message = TemplateSendMessage(
+    alt_text='予定表見に行く？',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://example.com/image.jpg',
+        title='「予定表見に行く？」',
+        text='気になる催し物あった？掲示スペース見に行こうよ。TimeTreeを使ってるよ。\nきみがなにかするときも掲示したらいいよ。予想外の誰かが遊びに来たら面白そうじゃない？',
+        actions=[
+            URIAction(
+                label='掲示スペースに立ち寄る',
+                uri='https://timetr.ee/s/RrHpwO_-XUfL1DUmyFmWOCt-EvRdKx9K'
+            )
+        ]
+    )
+    )
+    return buttons_template_message
