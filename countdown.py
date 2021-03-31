@@ -51,4 +51,4 @@ def cd_sendmsg(strday, yourname):
         original_content_url=img_urls,
         preview_image_url= img_urls
     )
-    return image_messege
+    return image_message
