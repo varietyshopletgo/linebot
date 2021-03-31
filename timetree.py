@@ -21,8 +21,8 @@ def getTimetree():
     data = r.json()
     
     # UTC→JSTに時間を変換
-    date_str.replace('Z', '+00:00')
-    t = dateutil.parser.parse(date_str)
+    data.replace('Z', '+00:00')
+    t = dateutil.parser.parse(data)
     JST = timezone(timedelta(hours=+9))
     t_jst = t.astimezone(JST)
     
