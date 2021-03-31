@@ -41,7 +41,7 @@ def getTimetree():
         tt_day = t_jst.strftime("%-d")
         ret = tt_month + '/' + tt_day        
         tt_msg += ret + ' ' + tt_event + '\n'
-        tt_longmsg = 'こんなの見つけたよ\n\n' + tt_msg
+        tt_longmsg = tt_msg + 'があるらしい'
     
     return tt_longmsg
 
@@ -49,8 +49,6 @@ def tt_return_msg():
     buttons_template_message = TemplateSendMessage(
     alt_text='予定表見に行く？',
     template=ButtonsTemplate(
-        thumbnail_image_url='https://example.com/image.jpg',
-        title='「予定表見に行く？」',
         text='気になる催し物あった？君もなにかするとき掲示したらいいよ。予想外の誰かが来たら面白そうじゃない？',
         actions=[
             URIAction(
