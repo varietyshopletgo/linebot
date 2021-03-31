@@ -19,7 +19,7 @@ def getTimetree():
     # リクエスト
     r = requests.get(URL, headers=headers)
     data = r.json()
-    
+    tt_msg =""
 
     for event in data['data']:
         tt_event = event['attributes']['title']
