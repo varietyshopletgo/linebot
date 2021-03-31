@@ -49,7 +49,7 @@ def get_msg():
     buttons_template_message = TemplateSendMessage(
     alt_text='予定表見に行く？',
     template=ButtonsTemplate(
-        text="予定表見に行く？"
+        text="予定表見に行く？",
         actions=[
             URIAction(
                 label='掲示スペースに立ち寄る',
