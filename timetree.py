@@ -20,20 +20,22 @@ def getTimetree():
     r = requests.get(URL, headers=headers)
     data = r.json()
     
-    # UTC→JSTに時間を変換
-    data.replace('Z', '+00:00')
-    t = dateutil.parser.parse(data)
-    JST = timezone(timedelta(hours=+9))
-    t_jst = t.astimezone(JST)
-    
-    # 文章のパーツに必要な状態に整形
-    tt_month = t_jst.strftime("%-m")
-    tt_day = t_jst.strftime("%-d")
-    ret = tt_month + '/' + tt_day
+
     for event in data['data']:
         tt_event = event['attributes']['title']
         tt_time = event['attributes']['start_at']
-        tt_msg += time_jst(tt_time) + ' ' + tt_event + '\n'
-    tt_longmsg = 'こんなの見つけたよ\n\n' + tt_msg
+        
+        # UTC→JSTに時間を変換
+        tt_time.replace('Z', '+00:00')
+        t = dateutil.parser.parse(tt_time)
+        JST = timezone(timedelta(hours=+9))
+        t_jst = t.astimezone(JST)
+        
+        # 文章のパーツに必要な状態に整形
+        tt_month = t_jst.strftime("%-m")
+        tt_day = t_jst.strftime("%-d")
+        ret = tt_month + '/' + tt_day        
+        tt_msg += ret + ' ' + tt_event + '\n'
+        tt_longmsg = 'こんなの見つけたよ\n\n' + tt_msg
     
     return tt_longmsg
