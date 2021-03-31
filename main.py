@@ -69,8 +69,9 @@ def handle_message(event):
         result2 = countdown.cd_sendmsg(str_day,yourname)
         line_bot_api.reply_message(event.reply_token,[result1, result2])
     elif event.message.text == "近々なにかある？":
-        result = timetree.getTimetree()
-        line_bot_api.reply_message(event.reply_token,[TextSendMessage(text=result),timetree.tt_return_msg()])
+        result1 = timetree.get_timetree()
+        result2 = timetree.get_msg()
+        line_bot_api.reply_message(event.reply_token,[result1,result2])
     elif event.message.text == "サボテン話そう":
         result = quick_reply.response_message()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))

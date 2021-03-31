@@ -4,11 +4,10 @@ import json
 from datetime import datetime, timezone, timedelta
 import dateutil.parser
 from linebot.models import (
-    TemplateSendMessage, ButtonsTemplate, URIAction
-    
+    TemplateSendMessage, ButtonsTemplate, URIAction  
 )
 
-def getTimetree():
+def get_timetree():
     # トークンの設定
     ACCESS_TOKEN = os.environ["TT_ACCESS_TOKEN"]
 
@@ -40,11 +39,13 @@ def getTimetree():
         tt_day = t_jst.strftime("%-d")
         ret = tt_month + '/' + tt_day        
         tt_msg += ret + ' ' + tt_event + '\n'
-        tt_longmsg = tt_msg + 'があるらしい'
     
-    return tt_longmsg
+    tt_longmsg = tt_msg + 'があるらしい'
+    text_send_message = TextSendMessage(text=tt_longmsg)
+    
+    return text_send_message
 
-def tt_return_msg():
+def get_msg():
     buttons_template_message = TemplateSendMessage(
     alt_text='予定表見に行く？',
     template=ButtonsTemplate(
