@@ -57,9 +57,10 @@ def callback():
 def handle_message(event):
     
     if event.message.text == "今日はなんの日だっけ？":
-        result = adalo.callAPI()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-    elif event.message.text == "おーいサボテン。起きてる？":
+        result1 = adalo.callAPI()
+        result2 = adalo.get_msg()
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
+    elif event.message.text == "おーい、サボテン":
         result = saboten()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
     elif event.message.text == "そういえば令和市が終わるまであと何日？":
