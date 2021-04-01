@@ -128,7 +128,7 @@ def all_sns():
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/166060251_156255479701750_7248689856255699436_n.jpg',
+                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_note.jpg',
                     title='note「令和市だより」',
                     text='もう説明は意味をなさなくなってきたけれど、行動の背景を知りたくなるときもあるよね。',
                     actions=[
@@ -139,7 +139,7 @@ def all_sns():
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/165932370_775317893098235_6080044181924237203_n.jpg',
+                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_twitter.jpg',
                     title='twitter',
                     text='twitter上でも令和市の気配を感じたくなったらフォローしといて。',
                     actions=[
@@ -151,7 +151,7 @@ def all_sns():
                 ),
 
                 CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/166060251_156255479701750_7248689856255699436_n.jpg',
+                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_college.jpg',
                     title='令和市民大学',
                     text='ありのままに見えている世界を共有したくなったらやっぱりここだな。誰かと話すっていいよね。',
                     actions=[

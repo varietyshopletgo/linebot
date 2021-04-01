@@ -3,7 +3,7 @@ import requests #APIリクエストに必要
 import json #jsonを扱うのに必要
 import datetime #時間をとってくるのに必要
 from linebot.models import (
-    TextSendMessage, TemplateSendMessage, ButtonsTemplate
+    TextSendMessage, TemplateSendMessage, ButtonsTemplate, URIAction
 
 )
 
