@@ -1,5 +1,5 @@
 from linebot.models import (
-    TemplateSendMessage, CarouselColumn, URIAction
+    TemplateSendMessage, CarouselColumn, URIAction, CarouselTemplate
 )
 
 def sns():
