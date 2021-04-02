@@ -6,6 +6,8 @@ import information
 import quick_reply
 import random
 import timetree
+import replymsg
+import facilities
 from template import button_event
 from template import carousel_event
 
@@ -55,158 +57,38 @@ def callback():
 # メッセージが返ってきたときの反応
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    
-    if event.message.text == "今日はなんの日だっけ？":
-        result1 = adalo.callAPI()
-        result2 = adalo.get_msg()
-        line_bot_api.reply_message(event.reply_token,[result1, result2])
-    elif event.message.text == "おーい、サボテン":
-        result = saboten()
+    if event.message.text == "おーい、サボテン":
+        result = replymsg.replymsg()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
-    elif event.message.text == "そういえば令和市が終わるまであと何日？":
-        yourname = username_search(event)
-        result1 = countdown.countdown()
-        #str_day = countdown.countdown2()
-        #result2 = countdown.cd_sendmsg() #(str_day,yourname)
-        line_bot_api.reply_message(event.reply_token,result1)
-    elif event.message.text == "近々なにかある？":
-        result1 = timetree.get_timetree()
-        result2 = timetree.get_msg()
-        line_bot_api.reply_message(event.reply_token,[result1, result2]) #,
-    elif event.message.text == "サボテン話そう":
-        result = quick_reply.response_message()
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text="どの言語が好きですか？", quick_reply=QuickReply(items=result)))
-    elif event.message.text == "執事診断":
-        line_bot_api.reply_message(event.reply_token,button_event.Additional_question().question_a())
-    elif event.message.text == "ホームページとかどこだっけ？":
-        result = all_sns()
-        line_bot_api.reply_message(event.reply_token, result)
+
     elif event.message.text == "そろそろ出かけようかな":
-        result = response_message()
+        result = facilities.facilities()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="OK！どこに行く？",quick_reply=QuickReply(result)))
+    
+    elif event.message.text == "近々なにかある？":
+        result1 = timetree.get_timetree()
+        result2 = timetree.get_msg()
+        line_bot_api.reply_message(event.reply_token,[result1, result2]) 
+    
+    elif event.message.text == "今日はなんの日だっけ？":
+        result1 = adalo.callapi()
+        result2 = adalo.getmsg()
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
+    
+    elif event.message.text == "そういえば令和市が終わるまであと何日？":
+        yourname = username_search(event)
+        result1 = countdown.countdown()
+        line_bot_api.reply_message(event.reply_token,result1)
+    
+    elif event.message.text == "ホームページとかどこだっけ？":
+        result = snsmenu.sns()
+        line_bot_api.reply_message(event.reply_token, result)
+        
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
-#値が返って来たときの反応
-@handler.add(PostbackEvent)
-def on_postback(event):
-    reply_token = event.reply_token
-    user_id = event.source.user_id
-
-    #postback_msg : method名を文字列で
-    postback_msg = event.postback.data
-
-    #additional_question : classオブジェクト
-    additional_question = button_event.Additional_question()
-
-    #クラスオブジェクトと文字列で取得したメソッド名から、メソッドオブジェクトを作成
-    question = getattr(additional_question, postback_msg)
-    line_bot_api.reply_message(event.reply_token, question())
-
-def response_message():
-  places = ['令和市民大学', '令和市みらいの文化センター', 'ふぃろと愉快な仲間たち', '令和市note直通特急', '思考の渦', 'ゆかりの部屋', '令和他力本願寺',  '蟹家飯店', '令和市郵便局', '令和市立病院', '【DDD】', 'しさく公園', '令和市デジタル庁澪標研究棟']
-
-  urls = ['https://line.me/ti/g2/27Ul0_tr-YyDMHIgzCS7Ow?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/7DHG49ErBIh5npZ_gZd5jw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/XvISahCX8Yt0b6TPTC1DPA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/1fG-xDlclF4CXt-8k3n_jQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://discord.gg/A6NbcNnFY6', 'https://line.me/ti/g2/x3tNKIam9FfbcR7LgR980Q?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/tl4x1jhp7wuJovem38W8yw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',  'https://line.me/ti/g2/ug0rKcEWvPtiOVj2u-P3hw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/Jl9udQeJtpSZaNs5OGsONg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/aPdxTIf03gvb9_g-gqMpXQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/BXMu9SDB6ow8DIACeLsnzQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/W4k67QKcAi36NfciiTsDpg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default', 'https://line.me/ti/g2/6ZT9AW-wGagQ8cfiMkm3DQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default']
-
-  items = [ QuickReplyButton(
-        action=URIAction(
-            label=f"{place}", uri=f"{url}"
-            )
-        ) for place, url in zip(places, urls)]
-  return items
-
-def saboten():
-    words = ["はいよ！\nどうした？", "どうもどうも\nそういえば最近図書館行ってないな",
-    "どうもどうも\nそういえば最近図書館行ってないな",
-    "ほい\nサボテンって感じで書くとかっこよくない？\n仙人掌。",
-    "寝てない寝てない\n今日はこれが終わるまでは寝ないって決めた",
-    "本読んでたら寝ちゃってた\n本って一行だけ見えるようにして読むと頭に入ってくるよね",
-    "はい！\nサボテンだよ",
-    "ハロー\n深呼吸が必要そうな顔してるね\n\nはい、すってーー、吐いてーー",
-    "ほいー\n結局なんだかんだいってソクラテスが全部説明してたじゃんって思うの、僕だけ？",
-    "あれ？\n今何時？",
-    "はろー\n気がついたら四字熟語の意味を調べまくっちゃうときってあるよね",
-    "いやあ、さっき気づいたよ\n物語が不足してるわぁ",
-    "うん\nひらめきと光ってどっちが速いんだろう",
-    "たまにさ\nクラブに行きたいとかって思うことない？",
-    "剛胆無比ってかっこいいよね\n他の者よりも抜きでて肝がすわっていて、思い切った行動をとる様のことを言うらしいよ",
-    "一竜一猪って言葉、たまに思い出すよ\n努力して学ぶ者と学ばない者との間には、極めて大きな差ができるという意味",
-    "言葉が先にあってそこから感覚を思い出すことってあるよね\nだから熟語って好きだな",
-    "ぴえん\n\n言ってみたかっただけ", 
-    "おおお\nそろそろ新しい遊びを見つけたいな",
-    "最近学びたい気分ー\n令和市って科学館か博物館あったっけ？",
-    "やりたいことやればいいんだよ\n\n\nあ、意識飛んでた。おはよう。",
-    "はいはいはーい\n今日はなんか無駄に元気",
-    "調子いいときって調子乗ったらいいよね\nさっきそう思った",
-    "ほい、呼んだ？",
-    "この間さ、巨大数について調べてたら時間が溶けたよ\n数学ってやばいよね",
-    "ぬわー\n今、明日何するか考えてた"]
-    sleepy_word = random.choice(words)
-    return sleepy_word
-
-def all_sns():
-    carousel_template_message = TemplateSendMessage(
-        alt_text="どこの様子を見に行こうか",
-        template=CarouselTemplate(
-            columns=[
-                CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_note.jpg',
-                    title='note「令和市だより」',
-                    text='もう説明は意味をなさなくなってきたけれど、行動の背景を知りたくなるときもあるよね',
-                    actions=[
-                        URIAction(
-                            label='鑑賞しに行く',
-                            uri='https://note.com/reiwacity/m/m5467a2ca46c6'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_twitter.jpg',
-                    title='令和市twitter',
-                    text='twitter上でも令和市の気配を感じたくなったらフォローしといて',
-                    actions=[
-                        URIAction(
-                            label='鑑賞しに行く',
-                            uri='https://twitter.com/ReiwaCityNews'
-                        )
-                    ]
-                ),
-
-                CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_college.jpg',
-                    title='令和市民大学',
-                    text='ありのままに見えている世界を共有したくなったらやっぱりここだな。誰かと話すっていいよね',
-                    actions=[
-                        URIAction(
-                            label='鑑賞しに行く',
-                            uri='https://peraichi.com/landing_pages/view/r-university'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/164805270_470119047735471_3970313014321092495_n.jpg',
-                    title='ホームページ',
-                    text='このHPってリモコンみたいだよね。記念日を入れたくなったらこちらへ',
-                    actions=[
-                        URIAction(
-                            label='鑑賞しに行く',
-                            uri='https://previewer.adalo.com/7e89d6b4-efb5-435c-8ea3-3822f4a7c5c0/'
-                        )
-                    ]
-                )               
-            ]
-        )
-    )
-    return carousel_template_message
-
-def username_search(event):
-    profile = line_bot_api.get_profile(event.source.user_id)
-    yourname = profile.display_name
-    return yourname
-
 if __name__ == "__main__":
-#    app.run()
     port = int(os.getenv("PORT"))
     app.run(host="0.0.0.0", port=port)

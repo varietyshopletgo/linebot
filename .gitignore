@@ -1,5 +1,8 @@
 __pycache__/
-calender.py
-client_secret.json
 linebot
 future
+fonts
+template
+client_secret.json
+calender.py
+sample.py
