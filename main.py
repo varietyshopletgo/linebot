@@ -2,11 +2,10 @@ from flask import Flask, request, abort
 import os
 import adalo
 import countdown
-import information
 import quick_reply
-import random
 import timetree
 import replymsg
+import snsmenu
 import facilities
 from template import button_event
 from template import carousel_event
@@ -78,7 +77,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,[result1, result2])
     
     elif event.message.text == "そういえば令和市が終わるまであと何日？":
-        yourname = username_search(event)
         result1 = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,result1)
     
