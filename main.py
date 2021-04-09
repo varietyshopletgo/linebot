@@ -7,6 +7,7 @@ import timetree
 import replymsg
 import snsmenu
 import facilities
+import talkapi
 from template import button_event
 from template import carousel_event
 
@@ -65,27 +66,28 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="OK！どこに行く？",quick_reply=QuickReply(result)))
-    
+
     elif event.message.text == "近々なにかある？":
         result1 = timetree.get_timetree()
         result2 = timetree.get_msg()
-        line_bot_api.reply_message(event.reply_token,[result1, result2]) 
-    
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
+
     elif event.message.text == "今日はなんの日だっけ？":
         result1 = adalo.callapi()
         result2 = adalo.getmsg()
         line_bot_api.reply_message(event.reply_token,[result1, result2])
-    
+
     elif event.message.text == "そういえば令和市が終わるまであと何日？":
         result1 = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,result1)
-    
+
     elif event.message.text == "ホームページとかどこだっけ？":
         result = snsmenu.sns()
         line_bot_api.reply_message(event.reply_token, result)
-        
+
     else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
+        result = talkapi.talkapi(event.message.text)
+        line_bot_api.reply_message(event.reply_token,result)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
