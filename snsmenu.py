@@ -19,6 +19,17 @@ def sns():
                     ]
                 ),
                 CarouselColumn(
+                    thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/marche.jpg',
+                    title='令和市バーチャルマルシェ',
+                    text='令和市のオンラインショップがオープンしたってよ。どんなグッズを作ってみようか',
+                    actions=[
+                        URIAction(
+                            label='鑑賞しに行く',
+                            uri='https://reiwacity.stores.jp/'
+                        )
+                    ]
+                ),
+                CarouselColumn(
                     thumbnail_image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/img_twitter.jpg',
                     title='令和市twitter',
                     text='twitter上でも令和市の気配を感じたくなったらフォローしといて',
