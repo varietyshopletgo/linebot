@@ -8,6 +8,7 @@ import replymsg
 import snsmenu
 import facilities
 import talkapi
+import kusoyarou
 from template import button_event
 from template import carousel_event
 
@@ -60,6 +61,10 @@ def handle_message(event):
     if event.message.text == "おーい、サボテン":
         result = replymsg.replymsg()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
+
+    elif event.message.text == "起きてる？":
+        result = kusoyarou.replymsg()
+        line_bot_api.reply_message(event.reply_token,result)
 
     elif event.message.text == "そろそろ出かけようかな":
         result = facilities.facilities()
