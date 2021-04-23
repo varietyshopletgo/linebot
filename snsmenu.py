@@ -90,7 +90,7 @@ def callkusoyarou():
                     )
                 ),
                 ImageCarouselColumn(
-                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_read.jpg,
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_read.jpg',
                     action=URIAction(
                         label='日記を読む',
                         uri='https://note.com/_404_e_r_r_o_r_/m/m40a2ad85e1aa'
