@@ -1,5 +1,5 @@
 from linebot.models import (
-    QuickReplyButton, URIAction   
+    QuickReplyButton, URIAction, PostbackAction, PostbackEvent    
 )
 
 def facilities():
@@ -12,4 +12,16 @@ def facilities():
             label=f"{place}", uri=f"{url}"
             )
         ) for place, url in zip(places, urls)]
+  return items
+
+def nanikashitai():
+  texts = ['今日はなんの日だっけ？', '近々なにかある？']
+
+  names = ['adalo','timetree']
+
+  items = [QuickReplyButton(
+        action=PostbackAction(
+            label=f"{text}", display_text=f"{text}", data=f"{name}"
+            )
+        ) for text, name in zip(texts, names)]
   return items

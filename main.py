@@ -72,10 +72,8 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text="OK！どこに行く？",quick_reply=QuickReply(result)))
 
-    elif event.message.text == "近々なにかある？":
-        result1 = timetree.get_timetree()
-        result2 = timetree.get_msg()
-        line_bot_api.reply_message(event.reply_token,[result1, result2])
+    elif event.message.text == "なんかしたい":
+        facilities.nanikashitai()        
 
     elif event.message.text == "今日はなんの日だっけ？":
         result1 = adalo.callapi()
@@ -93,6 +91,24 @@ def handle_message(event):
     else:
         result = talkapi.talkapi(event.message.text)
         line_bot_api.reply_message(event.reply_token,result)
+    
+@handler.add(PostbackEvent)
+def on_postback(event):
+    reply_token = event.reply_token
+    user_id = event.source.user_id
+    # 何が返ってきたか見る
+    postback_msg = event.postback.data
+    if postback_msg == "adalo":
+        result1 = adalo.callapi()
+        result2 = adalo.getmsg()
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
+    elif postback_msg == "timetree":
+        result1 = timetree.get_timetree()
+        result2 = timetree.get_msg()
+        line_bot_api.reply_message(event.reply_token,[result1, result2])
+    else:
+        pass   
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
