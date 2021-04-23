@@ -1,6 +1,6 @@
 from linebot.models import (
     TemplateSendMessage, CarouselColumn, URIAction, CarouselTemplate, ImageCarouselTemplate,
-    PostbackAction
+    PostbackAction, ImageCarouselColumn
 )
 
 def sns():
