@@ -77,8 +77,8 @@ def callkusoyarou():
                 ImageCarouselColumn(
                     image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_call.jpg',
                     action=PostbackAction(
-                        label='呼びかける',
-                        display_text='呼びかける',
+                        label='話しかけてみる',
+                        display_text='おーいクソ野郎ちゃん',
                         data='kusoyarou'
                     )
                 ),
