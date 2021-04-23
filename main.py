@@ -62,8 +62,8 @@ def handle_message(event):
         result = replymsg.replymsg()
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
 
-    elif event.message.text == "起きてる？":
-        result = kusoyarou.replymsg()
+    elif event.message.text == "クソ野郎ちゃん・・・？":
+        result = snsmenu.callkusoyarou()
         line_bot_api.reply_message(event.reply_token,result)
 
     elif event.message.text == "そろそろ出かけようかな":
@@ -109,6 +109,9 @@ def on_postback(event):
         result1 = timetree.get_timetree()
         result2 = timetree.get_msg()
         line_bot_api.reply_message(event.reply_token,[result1, result2])
+    elif postback_msg == "kusoyarou":
+        result = kusoyarou.replymsg()
+        line_bot_api.reply_message(event.reply_token,result)        
     else:
         pass   
 
