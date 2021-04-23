@@ -73,7 +73,10 @@ def handle_message(event):
             TextSendMessage(text="OK！どこに行く？",quick_reply=QuickReply(result)))
 
     elif event.message.text == "なんかしたい":
-        facilities.nanikashitai()        
+        result = facilities.nanikashitai()
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="OK！どこに行く？",quick_reply=QuickReply(result)))                
 
     elif event.message.text == "今日はなんの日だっけ？":
         result1 = adalo.callapi()
