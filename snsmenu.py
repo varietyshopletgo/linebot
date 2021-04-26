@@ -75,27 +75,34 @@ def callkusoyarou():
         template=ImageCarouselTemplate(
             columns=[
                 ImageCarouselColumn(
-                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_call.jpg',
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/9D5BAC09-322C-43A7-8FD0-3A50B30E9791.jpeg',
                     action=PostbackAction(
-                        label='話しかけてみる',
+                        label='話しかける',
                         display_text='おーいクソ野郎ちゃん',
                         data='kusoyarou'
                     )
                 ),
                 ImageCarouselColumn(
-                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_create.jpg',
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/029D5C09-00F2-48A5-BF6E-BE18E67628A7.jpeg',
                     action=URIAction(
-                        label='言葉や画像を投稿する',
+                        label='普段言わないことを吐き出す',
                         uri='https://zealous-chandrasekhar-8fae19.netlify.app/'
                     )
                 ),
                 ImageCarouselColumn(
-                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/kusoyarou_read.jpg',
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/B734762A-6EFC-479E-A94F-4851A1546677.jpeg',
                     action=URIAction(
-                        label='日記を読む',
+                        label='noteを見に行く',
                         uri='https://note.com/_404_e_r_r_o_r_/m/m40a2ad85e1aa'
                     )
                 ),
+                ImageCarouselColumn(
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/BF42A81F-CE29-40A9-864D-1D428D269CC8.jpeg',
+                    action=URIAction(
+                        label='twitterを見に行く',
+                        uri='https://twitter.com/_404_e_r_r_o_r_'
+                    )
+                ),                
             ]
         )
     )
