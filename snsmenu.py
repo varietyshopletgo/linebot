@@ -85,7 +85,7 @@ def callkusoyarou():
                 ImageCarouselColumn(
                     image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/029D5C09-00F2-48A5-BF6E-BE18E67628A7.jpeg',
                     action=URIAction(
-                        label='普段言わないことを吐き出す',
+                        label='吐き出しちゃえよ',
                         uri='https://zealous-chandrasekhar-8fae19.netlify.app/'
                     )
                 ),
