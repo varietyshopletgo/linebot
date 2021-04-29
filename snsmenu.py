@@ -75,20 +75,20 @@ def callkusoyarou():
         template=ImageCarouselTemplate(
             columns=[
                 ImageCarouselColumn(
-                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/175981664_298433741916520_1254296856856474412_n.jpg',
-                    action=URIAction(
-                        label='クソ野郎ちゃんに吐き出す',
-                        uri='https://zealous-chandrasekhar-8fae19.netlify.app/'
-                    )
-                ),                
-                ImageCarouselColumn(
                     image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/9D5BAC09-322C-43A7-8FD0-3A50B30E9791.jpeg',
                     action=PostbackAction(
                         label='話しかける',
                         display_text='おーいクソ野郎ちゃん',
                         data='kusoyarou'
                     )
-                ),
+                ),                
+                ImageCarouselColumn(
+                    image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/175981664_298433741916520_1254296856856474412_n.jpg',
+                    action=URIAction(
+                        label='クソ野郎ちゃんに吐き出す',
+                        uri='https://zealous-chandrasekhar-8fae19.netlify.app/'
+                    )
+                ),                
                 ImageCarouselColumn(
                     image_url='https://reiwacity-linebot.s3-ap-northeast-1.amazonaws.com/B734762A-6EFC-479E-A94F-4851A1546677.jpeg',
                     action=URIAction(
