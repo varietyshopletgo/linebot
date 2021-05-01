@@ -29,7 +29,7 @@ def nanikashitai():
 def callkusoyarou2():
   items = [QuickReplyButton(
           action=PostbackAction(
-            label='話しかける',
+            label='おーいクソ野郎ちゃん',
             display_text='おーいクソ野郎ちゃん',
             data='kusoyarou'
             )
