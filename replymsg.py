@@ -26,3 +26,12 @@ def replymsg():
     ]
     msg = random.choice(words)
     return msg
+
+def kusoyarou_saboten():
+    words = [
+        "さっきそのあたりを散歩していたよ",
+        "たまにこっそり投稿しておいてよ",
+        "まだ起きてると思うよ"
+    ]  
+    msg = random.choice(words)
+    return msg  

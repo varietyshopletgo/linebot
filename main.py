@@ -64,9 +64,10 @@ def handle_message(event):
 
     elif event.message.text == "クソ野郎ちゃんは？":
         result = facilities.callkusoyarou2()
+        txtmsg = replymsg.kusoyarou_saboten()
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="さっきそのあたりを散歩していたよ",quick_reply=QuickReply(result)))
+            TextSendMessage(text=txtmsg,quick_reply=QuickReply(result)))
     elif event.message.text == "おーいクソ野郎ちゃん":
         result = kusoyarou.replymsg()
         line_bot_api.reply_message(event.reply_token,result)     
