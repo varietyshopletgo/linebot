@@ -25,3 +25,32 @@ def nanikashitai():
             )
         ) for text, name in zip(texts, names)]
   return items
+
+def callkusoyarou2():
+  items = [QuickReplyButton(
+          action=PostbackAction(
+            label='話しかける',
+            display_text='おーいクソ野郎ちゃん',
+            data='kusoyarou'
+            )
+          ),
+          QuickReplyButton(
+          action=URIAction(
+            label="投稿する", 
+            uri='https://zealous-chandrasekhar-8fae19.netlify.app/'
+            )
+          ),
+          QuickReplyButton(
+          action=URIAction(
+            label='twitter',
+            uri='https://twitter.com/_404_e_r_r_o_r_'            
+            )
+          ),
+          QuickReplyButton(
+          action=URIAction(
+            label='note',
+            uri='https://note.com/_404_e_r_r_o_r_/m/m40a2ad85e1aa'
+            )
+          ),          
+          ]
+  return items

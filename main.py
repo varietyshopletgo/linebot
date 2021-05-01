@@ -63,7 +63,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
 
     elif event.message.text == "クソ野郎ちゃん？":
-        result = snsmenu.callkusoyarou()
+        result = facilities.callkusoyarou2()
         line_bot_api.reply_message(event.reply_token,result)
     elif event.message.text == "おーいクソ野郎ちゃん":
         result = kusoyarou.replymsg()
