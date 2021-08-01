@@ -20,9 +20,7 @@ def replymsg():
 
 def kusoyarou_saboten():
     words = [
-        "さっきそのあたりを散歩していたよ",
-        "たまにこっそり投稿しておいてよ",
-        "まだ起きてると思うよ"
+        "今ちょっと反応ないかも/nシステムは動いているから昔の返答が返ってくると思う"
     ]  
     msg = random.choice(words)
     return msg  
