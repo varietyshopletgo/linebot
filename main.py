@@ -90,7 +90,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,[result1, result2])        
 
    
- elif event.message.text == "そういえば令和市が終わるまであと何日？":
+    elif event.message.text == "そういえば令和市が終わるまであと何日？":
         line_bot_api.reply_message(event.reply_token,TextSendMessage("えっ？"))
  
 #使ってない
