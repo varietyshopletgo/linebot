@@ -82,17 +82,22 @@ def handle_message(event):
         result = facilities.nanikashitai()
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="OK！何しらべる？",quick_reply=QuickReply(result)))                
-
+            TextSendMessage(text="OK！何しらべる？",quick_reply=QuickReply(result)))       
+        
     elif event.message.text == "今日はなんの日だっけ？":
         result1 = adalo.callapi()
         result2 = adalo.getmsg()
-        line_bot_api.reply_message(event.reply_token,[result1, result2])
+        line_bot_api.reply_message(event.reply_token,[result1, result2])        
 
-    elif event.message.text == "そういえば令和市が終わるまであと何日？":
+   
+ elif event.message.text == "そういえば令和市が終わるまであと何日？":
+        line_bot_api.reply_message(event.reply_token,TextSendMessage("えっ？"))
+ 
+#使ってない
+    elif event.message.text == "そういえば令和市が終わるまであと何日":
         result1 = countdown.countdown()
         line_bot_api.reply_message(event.reply_token,result1)
-
+        
     elif event.message.text == "ホームページとかどこだっけ？":
         result = snsmenu.sns()
         line_bot_api.reply_message(event.reply_token, result)
