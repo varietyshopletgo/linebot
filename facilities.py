@@ -30,7 +30,7 @@ def callkusoyarou2():
   items = [QuickReplyButton(
           action=PostbackAction(
             label='おーいクソ野郎ちゃん',
-            display_text='おーいクソ野郎ちゃん',
+            display_text='おーいクソ野郎ちゃん（再現）',
             data='kusoyarou'
             )
           ),
